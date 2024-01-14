@@ -19,22 +19,19 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
-      # Add working directory to build step
       - name: Build with dotnet
         run: dotnet build --configuration Release
-        working-directory: backend # Change to the backend directory
+        working-directory: backend
 
-      # Add working directory to publish step and change output path
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-        working-directory: backend # Change to the backend directory
+        run: dotnet publish -c Release -o ${{github.workspace}}/myapp
+        working-directory: backend
 
-      # Change the path to the artifact being uploaded
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{github.workspace}}/myapp
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,26 +41,25 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write
     steps:
-        - name: Download artifact from build job
-          uses: actions/download-artifact@v3
-          with:
-            name: .net-app
-        
-        - name: Login to Azure
-          uses: azure/login@v1
-          with:
-            client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_53E0568465CB4185914A2CF92E56E3F7 }}
-            tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_53A9DECEFF2D4E3395E5C25BDC4D8302 }}
-            subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3DB0D179223B4938B6B6D88E466EF40D }}
-      
-        - name: Deploy to Azure Web App
-          id: deploy-to-webapp
-          uses: azure/webapps-deploy@v2
-          with:
-            app-name: 'paraphraser'
-            slot-name: 'Production'
-            # Update the package path if needed
-            package: ${{env.DOTNET_ROOT}}/myapp
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: .net-app
+          path: myapp
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_53E0568465CB4185914A2CF92E56E3F7 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_53A9DECEFF2D4E3395E5C25BDC4D8302 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3DB0D179223B4938B6B6D88E466EF40D }}
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'paraphraser'
+          slot-name: 'Production'
+          package: myapp
       
