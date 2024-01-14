@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - paraphraser
 
 on:
@@ -22,12 +19,17 @@ jobs:
           dotnet-version: '7.x'
           include-prerelease: true
 
+      # Add working directory to build step
       - name: Build with dotnet
         run: dotnet build --configuration Release
+        working-directory: backend # Change to the backend directory
 
+      # Add working directory to publish step and change output path
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        working-directory: backend # Change to the backend directory
 
+      # Change the path to the artifact being uploaded
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
@@ -40,27 +42,28 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
     permissions:
       id-token: write #This is required for requesting the JWT
-
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: .net-app
+        - name: Download artifact from build job
+          uses: actions/download-artifact@v3
+          with:
+            name: .net-app
+        
+        - name: Login to Azure
+          uses: azure/login@v1
+          with:
+            client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
+            tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
+            subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
       
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_BFAABDA98F27497C9CC627D0D5E01CB0 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_53A9DECEFF2D4E3395E5C25BDC4D8302 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3DB0D179223B4938B6B6D88E466EF40D }}
-
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'paraphraser'
-          slot-name: 'Production'
-          package: .
-          
+        - name: Deploy to Azure Web App
+          id: deploy-to-webapp
+          uses: azure/webapps-deploy@v2
+          with:
+            app-name: 'paraphraser'
+            slot-name: 'Production'
+            # Update the package path if needed
+            package: ${{env.DOTNET_ROOT}}/myapp
+      
