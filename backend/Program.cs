@@ -39,8 +39,6 @@ class Program
             };
             Console.WriteLine(output);
 
-    
-
             return Results.Ok(output);
         });
 
