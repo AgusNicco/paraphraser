@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:5110';
+const apiUrl = 'https://paraphraser.azurewebsites.net/';
 
 async function paraphrase(text) {
     const input = {

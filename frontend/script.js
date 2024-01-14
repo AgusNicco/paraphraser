@@ -1,6 +1,5 @@
 import svc from "/services.js";
 
-
 svc.pingServer();
 const form = document.getElementById('paraphraseForm');
 form.addEventListener('submit', async function (event) {
