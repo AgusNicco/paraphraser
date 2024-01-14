@@ -1,5 +1,7 @@
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/appsettings.Development.json
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/appsettings.json
+/Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/banned_words.json
+/Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/encouraged_words.json
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/backend
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/backend.deps.json
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/backend.runtimeconfig.json
@@ -32,5 +34,3 @@
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/obj/Debug/net7.0/backend.pdb
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/obj/Debug/net7.0/backend.genruntimeconfig.cache
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/obj/Debug/net7.0/ref/backend.dll
-/Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/banned_words.json
-/Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/encouraged_words.json
