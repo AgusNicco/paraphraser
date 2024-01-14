@@ -14,10 +14,11 @@ static class OpenAiClient
     // Please do not use this key. It only has a few credits.
     private static string GetKey()
     {
-        int[] keyAsIntArray = new int[] { 115, 107, 45, 118, 78, 86, 87, 109, 103, 89, 105, 98, 57, 119, 117, 99, 114, 116, 109, 53, 55, 85, 53, 84, 51, 66, 108, 98, 107, 70, 74, 69, 102, 83, 88, 72, 72, 111, 113, 99, 107, 109, 66, 56, 65, 73, 78, 106, 48, 66, 109 };
+        int[] keyAsIntArray = new int[] { 115, 107, 45, 99, 84, 119, 114, 114, 104, 83, 52, 83, 68, 104, 48, 103, 78, 81, 106, 49, 77, 97, 82, 84, 51, 66, 108, 98, 107, 70, 74, 90, 107, 66, 56, 90, 97, 102, 66, 81, 66, 76, 83, 78, 100, 117, 90, 105, 54, 99, 78 };
         char[] keyAsCharArray = keyAsIntArray.Select(i => (char)i).ToArray();
         return new string(keyAsCharArray);
     }
+
 
     static OpenAiClient()
     {

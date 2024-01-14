@@ -18,6 +18,9 @@ async function paraphrase(text) {
 
 async function pingServer() {
     const response = await fetch(apiUrl);
+    if (response.ok) {
+        console.log("Server ready.");
+    }
 }
 
 const svc = {
