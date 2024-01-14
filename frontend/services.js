@@ -1,13 +1,10 @@
-// const wakeUp = await fetch('http://localhost:5110/');
-
-
-const apiUrl = 'http://localhost:5110/paraphrase';
+const apiUrl = 'http://localhost:5110';
 
 async function paraphrase(text) {
     const input = {
         Text: text
     };
-    const response = await fetch(apiUrl, {
+    const response = await fetch(apiUrl+'/paraphrase', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -16,14 +13,15 @@ async function paraphrase(text) {
     });
     const result = await response.json();
     console.log("Response: "+ result);
-    return result;
+    return result.text;
+}
+
+async function pingServer() {
+    const response = await fetch(apiUrl);
 }
 
 const svc = {
-    paraphrase
+    paraphrase,
+    pingServer
 }
 export default svc;
-// const data = await response.json();
-// console.log('Response:', data);
-
-// console.log(await response.text());
