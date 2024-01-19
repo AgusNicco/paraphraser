@@ -11,7 +11,7 @@ Paragraph to rewrite:
 
 '{paragraph}'
 
-Respond to the message with the rewritten paragraph and no further comments.";
+Respond to the message with the rewritten paragraph and no further comments. Don't surround it with quotes.";
 
         return prompt;
     }
@@ -36,7 +36,7 @@ Here is the paragraph:
 
 '{paragraph}'
 
-Respond to the message with the rewritten paragraph and no further comments.";
+Respond to the message with the rewritten paragraph and no further comments. Don't surround it with quotes.";
 
         return prompt;
     }
@@ -53,8 +53,8 @@ Instructions:
 
 1- Identify and list which words in the sentence are {wordType}s (if any).
 2- Rewrite the sentence so each of these words is replaced by a {wordType} with a similar meaning that is more simplistic. Your choice should try to conserve the original meaning of the sentence, add prepositions if necessary, or make adjustments if necessary. If the word is irreplaceable, leave it as is.
-3- Write anthe new version and asses that the new sentence conserves the original meaning. If it doesn't rewrite it again.
-4- Once it has been simplified and the assesment has been made return the new sentence between braces {{}}. Example:" +"{This is the new sentence.}";
+3- Write anthe new version and asses that the new sentence conserves the original meaning. If it doesn't, rewrite it again.
+4- Once it has been simplified and the assesment has been made return the new sentence between braces {{}}. Don't surround it with quotes. Example: " +"{This is the new sentence.}";
 
         return prompt;
     }
