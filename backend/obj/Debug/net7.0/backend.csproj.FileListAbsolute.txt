@@ -34,3 +34,4 @@
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/obj/Debug/net7.0/backend.pdb
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/obj/Debug/net7.0/backend.genruntimeconfig.cache
 /Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/obj/Debug/net7.0/ref/backend.dll
+/Users/agus/Documents/my-code-dir/Projects/paraphraser/backend/bin/Debug/net7.0/mapped_words.json

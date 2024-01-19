@@ -45,7 +45,7 @@ Respond to the message with the rewritten paragraph and no further comments.";
     public static string WordsToReplacePrompt(string sentence, string wordType, string paragraph = "")
     {
 
-string diffPrompt = @$"Follow instructions to rewrite the following sentence:
+string prompt = @$"Follow instructions to rewrite the following sentence:
 
 Sentence = {sentence}
 
@@ -56,6 +56,6 @@ Instructions:
 3- Write anthe new version and asses that the new sentence conserves the original meaning. If it doesn't rewrite it again.
 4- Once it has been simplified and the assesment has been made return the new sentence between braces {{}}. Example:" +"{This is the new sentence.}";
 
-        return diffPrompt;
+        return prompt;
     }
 }

@@ -61,10 +61,6 @@ internal static class Logic
         string[] newParagraphs = await Task.WhenAll(paragraphTasks);
         newParagraphs = newParagraphs.Where(x => x.Length > 0).ToArray();
         string newText = string.Join("\n\n", newParagraphs);
-        // string pattern = @"(\n){3,}";
-        // string replacement = "\n\n";
-
-        // newText = Regex.Replace(newText, pattern, replacement);
 
         return newText;
     }
@@ -89,7 +85,6 @@ internal static class Logic
 
     public static async Task<string> ReplaceWords(string prompt, string sentence)
     {
-        // Send the prompt to the OpenAI API and await the response
         if (sentence.Length < 12 || sentence.Split(" ").Length < 5)
         {
             return sentence;
@@ -153,9 +148,6 @@ internal static class Logic
             return "Error: No sentence found within double curly braces.";
         }
     }
-
-
-    
 }
     
 
